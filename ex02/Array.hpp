@@ -23,6 +23,11 @@ class Array
 			for (unsigned int i = 0; i < rhs._size; i++)
 				_array[i] = rhs._array[i];
 		};
+
+		~Array(){
+			delete [] _array;
+			std::cout << "(Array) Destructor called" << std::endl;
+		};
 		Array& operator=(const Array& rhs){
 			std::cout << "(Array) Copy assignment operator called" << std::endl;
 			if (this != &rhs)
