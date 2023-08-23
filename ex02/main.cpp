@@ -16,7 +16,8 @@ int main(int, char**)
     //SCOPE
     {
         Array<int> tmp = numbers;
-        Array<int> test(tmp);
+        Array<int> test;
+        test = tmp;
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -50,4 +51,9 @@ int main(int, char**)
     }
     delete [] mirror;//
     return 0;
+}
+
+__attribute((destructor))
+static void destructor() {
+	system("leaks -q main");
 }
