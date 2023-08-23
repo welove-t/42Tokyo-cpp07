@@ -46,11 +46,6 @@ class Array
 			return _array[i];
 		};
 		unsigned int	size() const {return _size;};
-		// class std::exception
-		// {
-		// 	public:
-		// 		const char* what() const throw() {return "Array out of bounds!";};
-		// };
 };
 
 #endif
