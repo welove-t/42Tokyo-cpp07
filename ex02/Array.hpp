@@ -3,6 +3,12 @@
 
 #include <iostream>
 
+#define RED		"\e[0;31m" // Red
+#define GREEN	"\e[0;32m" // Green
+#define YELLOW	"\e[0;33m" // Yellow
+#define BLUE	"\e[0;34m" // Blue
+#define RESET 	"\e[0m"    // Reset
+
 template <class T>
 class Array
 {
@@ -33,6 +39,7 @@ class Array
 			if (this != &rhs)
 			{
 				delete []_array;
+				_size = rhs._size;
 				_array = new T[rhs._size];
 				for (unsigned int i = 0; i < rhs._size; i++)
 					_array[i] = rhs._array[i];

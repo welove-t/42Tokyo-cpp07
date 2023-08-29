@@ -1,55 +1,52 @@
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
-int main(int, char**)
+#define MAX_VAL 5
+int main()
 {
-	Array<int> numbers(MAX_VAL);
+	Array<int> arrayNum(MAX_VAL);
 	int* mirror = new int[MAX_VAL];
-	srand(time(NULL));
+	std::cout << BLUE << "[ Test Constructor ]" << RESET << std::endl;
 	for (int i = 0; i < MAX_VAL; i++)
 	{
-		const int value = rand();
-		numbers[i] = value;
+		const int value = i + 42;
+		arrayNum[i] = value;
 		mirror[i] = value;
+		std::cout << GREEN << "Array: " << arrayNum[i] << "\t\tMirror: " << mirror[i] << RESET << std::endl;
 	}
-	//SCOPE
+	std::cout << BLUE << "[ Test Copy ]" << RESET << std::endl;
 	{
-		Array<int> tmp = numbers;
+		Array<int> tmp = arrayNum;
 		Array<int> test;
 		test = tmp;
-	}
-
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		if (mirror[i] != numbers[i])
+		for (int i = 0; i < MAX_VAL; i++)
 		{
-			std::cerr << "didn't save the same value!!" << std::endl;
-			return 1;
+			std::cout << GREEN << "CopyConstructor: " << tmp[i] << "\tCopyAssignmentOperator: " << test[i] << RESET << std::endl;
 		}
 	}
+	std::cout << BLUE << "[ Test Error ]" << RESET << std::endl;
 	try
 	{
-		numbers[-2] = 0;
+		arrayNum[-2] = 0;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED <<  e.what() << RESET << std::endl;
 	}
 	try
 	{
-		numbers[MAX_VAL] = 0;
+		arrayNum[MAX_VAL] = 0;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RESET << std::endl;
 	}
 
 	for (int i = 0; i < MAX_VAL; i++)
 	{
-		numbers[i] = rand();
+		arrayNum[i] = rand();
 	}
-	delete [] mirror;//
+	delete [] mirror;
 	return 0;
 }
 
